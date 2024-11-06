@@ -1,9 +1,10 @@
 {
-  "name": "ngx-webcam",
-  "version": "0.4.1",
+  "name": "@alonewarrior/ngx-webcam",
+  "version": "0.5.0",
   "author": "basst314",
   "contributors": [
-    "davidshen84"
+    "davidshen84",
+    "alonewarrior"
   ],
   "license": "MIT",
   "repository": {
@@ -14,7 +15,7 @@
     "Webcam",
     "Camera",
     "Angular",
-    "Angular 13",
+    "Angular 13+",
     "Smartphone",
     "Phone",
     "Tablet"

@@ -63,6 +63,9 @@ export class WebcamComponent implements AfterViewInit, OnDestroy {
   /** width and height of the active video stream */
   private activeVideoSettings: MediaTrackSettings = null;
 
+  /** DeviceId of the active video stream */
+  private deviceId: string | null = null;
+
   /**
    * If the given Observable emits, an image will be captured and emitted through 'imageCapture' EventEmitter
    */
@@ -187,7 +190,7 @@ export class WebcamComponent implements AfterViewInit, OnDestroy {
     this.detectAvailableDevices()
       .then(() => {
         // start video
-        this.switchToVideoInput(null);
+        this.switchToVideoInput(this.deviceId);
       })
       .catch((err: string) => {
         this.initError.next(<WebcamInitError>{message: err});
@@ -252,9 +255,12 @@ export class WebcamComponent implements AfterViewInit, OnDestroy {
    * Switches the camera-view to the specified video device
    */
   public switchToVideoInput(deviceId: string): void {
-    this.videoInitialized = false;
-    this.stopMediaTracks();
-    this.initWebcam(deviceId, this.videoOptions);
+    if (this.deviceId !== deviceId) {
+      this.deviceId = deviceId;
+      this.videoInitialized = false;
+      this.stopMediaTracks();
+      this.initWebcam(deviceId, this.videoOptions);
+    }
   }
 
 
